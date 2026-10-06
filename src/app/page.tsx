@@ -84,8 +84,8 @@ export default function Home() {
                 <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
                    <User className="w-6 h-6 text-zinc-300" />
                 </div>
-                <h3 className="text-xl font-medium text-white mb-1">Sistem Erişimi</h3>
-                <p className="text-sm text-zinc-400">VoidChat Admin Paneli</p>
+                <h3 className="text-xl font-medium text-white mb-1">VoidChat Admin</h3>
+                <p className="text-sm text-zinc-400"></p>
               </div>
 
               <form onSubmit={(e) => { e.preventDefault(); setIsLoginOpen(false); }} className="space-y-4">
