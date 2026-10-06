@@ -13,23 +13,28 @@ const GithubIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Arka planda yavaşça dönen, görünürlüğü artırılmış radar/topografya animasyonu
-const TopographicBackground = () => (
-  <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-60">
-    <motion.div
-      animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-      transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-      className="absolute flex items-center justify-center w-[200vw] h-[200vw] md:w-[100vw] md:h-[100vw]"
-    >
-      <div className="absolute rounded-full border border-white/10 w-[20%] h-[20%]" />
-      <div className="absolute rounded-full border border-white/10 w-[35%] h-[35%] translate-x-4" />
-      <div className="absolute rounded-full border border-white/10 w-[50%] h-[50%] -translate-y-4" />
-      <div className="absolute rounded-full border border-white/10 w-[65%] h-[65%]" />
-      <div className="absolute rounded-full border border-white/10 w-[80%] h-[80%] translate-x-8" />
-      <div className="absolute rounded-full border border-white/10 w-[100%] h-[100%]" />
-    </motion.div>
-    {/* Kenarları karanlığa yedirmek için Vignette efekti */}
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)]" />
+// Yeni Apple HomePod / Siri Tarzı Akışkan Mesh Gradient Arka Plan
+const HomePodBackground = () => (
+  <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-40">
+    <div className="absolute inset-0 mix-blend-screen">
+      <motion.div
+        animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute top-[10%] left-[10%] w-[40vw] h-[40vw] bg-purple-600/20 rounded-full blur-[120px]"
+      />
+      <motion.div
+        animate={{ rotate: [360, 0], scale: [1, 1.2, 1] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-cyan-600/20 rounded-full blur-[120px]"
+      />
+      <motion.div
+        animate={{ x: [-50, 50, -50], y: [-20, 50, -20] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[30%] left-[40%] w-[30vw] h-[30vw] bg-pink-600/10 rounded-full blur-[100px]"
+      />
+    </div>
+    {/* Kenarları ve renkleri karanlığa yumuşakça yedirmek için Vignette efekti */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_85%)]" />
   </div>
 );
 
@@ -44,7 +49,8 @@ export default function Home() {
   return (
     <main className="bg-[#050505] text-[#ededed] font-sans selection:bg-zinc-800 selection:text-white relative min-h-screen">
       
-      <TopographicBackground />
+      {/* 1. YENİ HOMEPOD ARKA PLANI */}
+      <HomePodBackground />
 
       {/* Sağ Üst Köşe Fake Login Butonu */}
       <div className="absolute top-6 right-6 z-50">
@@ -73,7 +79,6 @@ export default function Home() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="relative w-full max-w-sm bg-zinc-950 border border-white/10 rounded-2xl shadow-2xl p-8 overflow-hidden"
             >
-              {/* Kapatma Butonu */}
               <button 
                 onClick={() => setIsLoginOpen(false)}
                 className="absolute top-4 right-4 text-zinc-500 hover:text-white transition"
@@ -118,6 +123,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* HERO EKRANI */}
       <motion.section 
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="sticky top-0 h-screen flex flex-col items-center justify-center px-6 text-center z-10"
@@ -148,6 +154,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
+      {/* İÇERİK BÖLÜMÜ */}
       <section className="relative z-20 bg-[#0a0a0a]/90 backdrop-blur-xl border-t border-white/5 rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.8)] pb-24">
         <div className="max-w-3xl mx-auto px-6 pt-24 space-y-32">
 
