@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { personalInfo, techStack, projects, experience } from "../data/portfolio";
 import { ArrowUpRight, Mail, User, X } from "lucide-react";
 
-// GitHub SVG İkonu
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
@@ -13,28 +12,26 @@ const GithubIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Yeni Apple HomePod / Siri Tarzı Akışkan Mesh Gradient Arka Plan
-const HomePodBackground = () => (
-  <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-40">
-    <div className="absolute inset-0 mix-blend-screen">
-      <motion.div
-        animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[10%] left-[10%] w-[40vw] h-[40vw] bg-purple-600/20 rounded-full blur-[120px]"
-      />
-      <motion.div
-        animate={{ rotate: [360, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-cyan-600/20 rounded-full blur-[120px]"
-      />
-      <motion.div
-        animate={{ x: [-50, 50, -50], y: [-20, 50, -20] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[30%] left-[40%] w-[30vw] h-[30vw] bg-pink-600/10 rounded-full blur-[100px]"
-      />
-    </div>
-    {/* Kenarları ve renkleri karanlığa yumuşakça yedirmek için Vignette efekti */}
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_85%)]" />
+// Yeni Gemini / Siri Aura Arka Planı
+const GeminiAuraBackground = () => (
+  <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-50">
+    <motion.div
+      animate={{ x: [0, 60, -40, 0], y: [0, -50, 40, 0], scale: [1, 1.1, 0.9, 1] }}
+      transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-[10%] left-[15%] w-[45vw] h-[45vw] bg-[#4285F4]/30 rounded-full blur-[120px]"
+    />
+    <motion.div
+      animate={{ x: [0, -50, 50, 0], y: [0, 60, -40, 0], scale: [1, 0.9, 1.1, 1] }}
+      transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute bottom-[15%] right-[10%] w-[50vw] h-[50vw] bg-[#9b72cb]/20 rounded-full blur-[120px]"
+    />
+    <motion.div
+      animate={{ x: [-40, 40, -40], y: [40, -40, 40] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-[40%] left-[40%] w-[35vw] h-[35vw] bg-[#ea4335]/10 rounded-full blur-[100px]"
+    />
+    {/* Parlaklığı kırmak ve yumuşatmak için ince karanlık tül */}
+    <div className="absolute inset-0 bg-[#050505]/40 backdrop-blur-[2px]" />
   </div>
 );
 
@@ -43,16 +40,14 @@ export default function Home() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.92]);
   
-  // Fake Login Modal State
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   return (
     <main className="bg-[#050505] text-[#ededed] font-sans selection:bg-zinc-800 selection:text-white relative min-h-screen">
       
-      {/* 1. YENİ HOMEPOD ARKA PLANI */}
-      <HomePodBackground />
+      {/* GEMINI AURA ANİMASYONU */}
+      <GeminiAuraBackground />
 
-      {/* Sağ Üst Köşe Fake Login Butonu */}
       <div className="absolute top-6 right-6 z-50">
         <button 
           onClick={() => setIsLoginOpen(true)}
@@ -63,7 +58,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Fake Login Modalı (Animasyonlu) */}
       <AnimatePresence>
         {isLoginOpen && (
           <motion.div 
@@ -123,7 +117,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* HERO EKRANI */}
       <motion.section 
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="sticky top-0 h-screen flex flex-col items-center justify-center px-6 text-center z-10"
@@ -154,7 +147,6 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* İÇERİK BÖLÜMÜ */}
       <section className="relative z-20 bg-[#0a0a0a]/90 backdrop-blur-xl border-t border-white/5 rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.8)] pb-24">
         <div className="max-w-3xl mx-auto px-6 pt-24 space-y-32">
 

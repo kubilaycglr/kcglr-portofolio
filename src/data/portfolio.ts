@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Kubilay Çağlar",
   title: "Yazılım Mühendisliği Öğrencisi & Geliştirici",
   location: "İstanbul, Türkiye",
-  bio: "İstanbul Aydın Üniversitesi 3. sınıf Yazılım Mühendisliği öğrencisiyim. Web teknolojileri (Next.js, Node.js) ve gömülü sistemler üzerine projeler geliştiriyorum.",
+  bio: "İstanbul Aydın Üniversitesi 3. sınıf Yazılım Mühendisliği öğrencisiyim. Web teknolojileri ve gömülü sistemler üzerine projeler geliştiriyorum.",
   email: "kubilay@kcglr.com",
   links: {
     github: "https://github.com/kubilaycglr",
